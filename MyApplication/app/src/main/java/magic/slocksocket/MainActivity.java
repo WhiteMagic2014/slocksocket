@@ -1,7 +1,6 @@
 package magic.slocksocket;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -17,7 +16,6 @@ import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,22 +29,21 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.magic.zxing.CaptureActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Iterator;
 import java.util.UUID;
 
 
 import magic.slocksocket.mina.BroadcastHelper;
 import magic.slocksocket.mina.ConstantValues;
 import magic.slocksocket.mina.updateService;
+import magic.slocksocket.netlistener.NetWorkStateReceiver;
 import magic.slocksocket.permissionshelper.PermissionsHelper;
 import magic.slocksocket.permissionshelper.permission.DangerousPermissions;
-
-import static magic.slocksocket.earthToMars.WorldGS2MarsGS;
+import magic.slocksocket.receiver.SlockInfoReceiver;
+import magic.slocksocket.receiver.UpdateUIListenner;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -76,129 +73,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             DangerousPermissions.SMS
     };
 
+    public NetWorkStateReceiver netWorkStateReceiver;
     private PermissionsHelper permissionsHelper;
+    public SlockInfoReceiver slockInfoReceiver;
 
 
-    // 接受消息广播 TAG
-    private BroadcastReceiver contentRecevier = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-
-            String data = intent.getStringExtra("data");
-
-            Log.i("chy", data);
-            info.setText(data);
-
-            if (data != null) {
-
-
-                if (data.equals("sessionOpened")) {
-                    btn_conn.setVisibility(View.GONE);
-                    btn_cut.setVisibility(View.VISIBLE);
-                }
-
-
-                try {
-                    JSONObject jsoninfo = new JSONObject(data);
-//                    Log.i("chy",info.toString());
-
-//                    info.setText(jsoninfo.toString());
-
-//
-//                    "batvalue":"3990",
-//                            "chargestatus":"FALSE",
-//                            "device":"lock",
-//                            "gpsdatatime":"17-04-11 14:18:57",
-//                            "gpsstatus":"1",
-//                            "id":"861358032238925",
-//                            "latitude":"North",
-//                            "lativalue":"121.56978",
-//                            "lockstatus":"unlocked",
-//                            "longitude":"East",
-//                            "longivalue":"31.310332"
-
-//                    String batvalue = jsoninfo.getString("batvalue");
-//                    String chargestatus = jsoninfo.getString("chargestatus");
-//                    String device = jsoninfo.getString("device");
-//                    String gpsdatatime = jsoninfo.getString("gpsdatatime");
-//                    String gpsstatus = jsoninfo.getString("gpsstatus");
-//                    String id = jsoninfo.getString("id");
-//                    String latitude = jsoninfo.getString("latitude");
-//                    String lativalue = jsoninfo.getString("lativalue");
-//                    String lockstatus = jsoninfo.getString("lockstatus");
-//                    String longitude = jsoninfo.getString("longitude");
-//                    String longivalue = jsoninfo.getString("longivalue");
-//
-//
-//                    info.setText("batvalue:" + batvalue +
-//                            "\nchargestatus:" + chargestatus +
-//                            "\ndevice:" + device +
-//                            "\ngpsdatatime:" + gpsdatatime +
-//                            "\ngpsstatus:" + gpsstatus +
-//                            "\nid:" + id +
-//                            "\nlockstatus:" + lockstatus +
-//                            "\nlatitude:" + latitude +
-//                            "\nlativalue:" + lativalue +
-//                            "\nlongitude:" + longitude +
-//                            "\nlongivalue:" + longivalue
-//                    );
-
-
-                    Iterator<?> it = jsoninfo.keys();
-                    String aa2 = "";
-                    String bb2 = null;
-                    String txt = "";
-                    while (it.hasNext()) {//遍历JSONObject
-                        bb2 = (String) it.next().toString();
-                        aa2 = jsoninfo.getString(bb2);
-                        Log.i("chy", bb2 + " - " + aa2);
-                        txt = txt + bb2 + " : " + aa2 + "\n";
-                    }
-
-                    info.setText(txt);
-
-
-                    if (jsoninfo != null) {
-//                        if (jsoninfo.has("ins") && !jsoninfo.has("lativalue") && !jsoninfo.has("longivalue")) {
-//                            //暂时用 ins 存不存在判断是开锁 还是 get返回
-//
-//                            //上锁解析
-//                            Log.i("chy", "上锁解析\n");
-//                            String status = jsoninfo.getString("ins");
-//
-//                            if (status.equals("unlocked")) {
-//                                //解锁成功
-//                                Toast.makeText(MainActivity.this, "开锁成功", Toast.LENGTH_SHORT).show();
-//                            } else if (status.equals("locked")) {
-//                                //车已上锁
-//                                Toast.makeText(MainActivity.this, "车已上锁", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                //错误
-//                                Toast.makeText(MainActivity.this, "开锁失败", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-
-                        if (jsoninfo.has("lativalue") && jsoninfo.has("longivalue")) {
-
-                            aMap.clear();
-                            LatLng now = new LatLng(Double.valueOf(jsoninfo.getString("lativalue")), Double.valueOf(jsoninfo.getString("longivalue")));
-                            //转换坐标
-                            LatLng trsnsPoint = WorldGS2MarsGS(now.latitude, now.longitude);
-                            aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(now, 16));
-                            drawMarkerOnMap(now, "车锁", "编号:" + jsoninfo.getString("id"));
-                        }
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        }
-    };
 
 
     @Override
@@ -244,6 +123,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         initmap();//应该放在权限获得之后
 
 
+        if (netWorkStateReceiver == null) {
+            netWorkStateReceiver = new NetWorkStateReceiver();
+        }
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(netWorkStateReceiver, filter);
+
+
         if (share_app.getBoolean("isfirst", true)) {
 
             editor_app.putString("ip", "www.hhsoftware.cn");
@@ -286,30 +173,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.btn_connect:
 
-//                注册广播
-                IntentFilter filter = new IntentFilter();
-                filter.addAction(ConstantValues.RECEIVEMESSGE);
-//                filter.addCategory(serviceintent.CATEGORY_DEFAULT);
-                registerReceiver(contentRecevier, filter);
-                Log.i("chy", "btn_connect");
-                startservice();
-
+                connect();
                 break;
 
 
             case R.id.btn_cut:
 
-
-                if (connecting) {
-                    unregisterReceiver(contentRecevier);
-//                    contentRecevier = null;
-                    connecting = false;
-                    stopService(serviceintent);//                    serviceintent = null;
-                    btn_conn.setVisibility(View.VISIBLE);
-                    btn_cut.setVisibility(View.GONE);
-                    info.setText("手动断开");
-                }
-
+                disconnect();
                 break;
 
 
@@ -334,12 +204,39 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
 
+
+
+
+
     private void connect() {
 //        注册广播
+
+        slockInfoReceiver = new SlockInfoReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ConstantValues.RECEIVEMESSGE);
-//                filter.addCategory(serviceintent.CATEGORY_DEFAULT);
-        registerReceiver(contentRecevier, filter);
+        registerReceiver(slockInfoReceiver, filter);
+
+        slockInfoReceiver.SetOnUpdateUIListenner(new UpdateUIListenner() {
+            @Override
+            public void updateinfo(String str) {
+                info.setText(str);
+            }
+
+            @Override
+            public void setcutdown() {
+                btn_conn.setVisibility(View.GONE);
+                btn_cut.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void shownewmarker(LatLng latLng, String id) {
+                aMap.clear();
+                aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+                drawMarkerOnMap(latLng, "车锁", "编号:" + id);
+            }
+        });
+
+
         Log.i("chy", "btn_connect");
         startservice();
     }
@@ -347,10 +244,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void disconnect() {
         if (connecting) {
-            unregisterReceiver(contentRecevier);
-//                    contentRecevier = null;
+            unregisterReceiver(slockInfoReceiver);
             connecting = false;
             stopService(serviceintent);//                    serviceintent = null;
+            btn_conn.setVisibility(View.VISIBLE);
+            btn_cut.setVisibility(View.GONE);
+            info.setText("手动断开");
+
         }
     }
 
@@ -460,6 +360,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         });
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -489,6 +390,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Toast.makeText(MainActivity.this, "扫描结果为:" + result + "\n车锁id为:" + bikeid, Toast.LENGTH_SHORT).show();
 
             gounlock(bikeid, uuid);
+
+
+            //连扫功能
+            Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+            startActivityForResult(intent, 0);
+
 
         } else if (resultCode == RESULT_OK && requestCode == 1) {
 
@@ -648,7 +555,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onDestroy() {
         super.onDestroy();
         permissionsHelper.onDestroy();
-        unregisterReceiver(contentRecevier);
+        unregisterReceiver(slockInfoReceiver);
+        unregisterReceiver(netWorkStateReceiver);
     }
 
 

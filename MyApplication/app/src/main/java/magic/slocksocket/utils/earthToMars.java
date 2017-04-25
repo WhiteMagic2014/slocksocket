@@ -1,4 +1,4 @@
-package magic.slocksocket;
+package magic.slocksocket.utils;
 
 import com.amap.api.maps.model.LatLng;
 

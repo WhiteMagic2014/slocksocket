@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@drawable/simple_button_style"
+                android:background="@color/white"
                 android:text="断开"
                 android:textColor="@color/black"
                 android:id="@+id/btn_cut"
@@ -86,9 +86,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="输入车锁ID"
-                    android:singleLine="true"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey" />
 
@@ -121,14 +118,13 @@
 
 
                 <Button
+                    android:id="@+id/btn_scan_new"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/simple_button_style"
                     android:text="扫码查询"
-                    android:textColor="@color/black"
-                    android:id="@+id/btn_scan_new"/>
-
+                    android:textColor="@color/black" />
 
 
             </LinearLayout>
@@ -176,7 +172,6 @@
 
 
         </LinearLayout>
-
 
 
     </LinearLayout>

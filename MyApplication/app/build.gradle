@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "23.0.1"
     defaultConfig {
-        applicationId "magic.slocksocket"
+        applicationId 'magic.slocksocket'
         minSdkVersion 9
         targetSdkVersion 25
         versionCode 1
@@ -17,13 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     sourceSets.main {
         jniLibs.srcDirs = ['libs']     //设置目标的so存放路径
         jni.srcDirs = [] //disable automatic ndk-build call
     }
-
-
+    productFlavors {
+    }
 }
 
 dependencies {
