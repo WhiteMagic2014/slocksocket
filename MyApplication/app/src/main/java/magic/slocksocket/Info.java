@@ -7,5 +7,6 @@ package magic.slocksocket;
 public class Info {
 
     //一个变化
+    //加了一句话
 
 }
