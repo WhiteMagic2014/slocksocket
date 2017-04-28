@@ -47,7 +47,7 @@ import magic.slocksocket.receiver.UpdateUIListenner;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private Button btn_openconfig, btn_conn, btn_cut, btn_scan, btn_send, btn_scan_new;
+    private Button btn_openconfig, btn_conn, btn_cut, btn_scan, btn_send, btn_scan_new,btn_send_chaxun;
     private EditText et_lockid;
     private TextView info;
     private Intent serviceintent;
@@ -96,7 +96,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_scan = (Button) findViewById(R.id.btn_scan);
         btn_send = (Button) findViewById(R.id.btn_send);
 
+
         btn_scan_new = (Button) findViewById(R.id.btn_scan_new);
+        btn_send_chaxun = (Button) findViewById(R.id.btn_send_chaxun);
 
         btn_openconfig.setOnClickListener(this);
         btn_conn.setOnClickListener(this);
@@ -104,6 +106,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_scan.setOnClickListener(this);
         btn_send.setOnClickListener(this);
         btn_scan_new.setOnClickListener(this);
+        btn_send_chaxun.setOnClickListener(this);
 
         et_lockid = (EditText) findViewById(R.id.et_lockid);
 
@@ -200,6 +203,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 gounlock(et_lockid.getText().toString(), uuid);
                 break;
 
+
+            case R.id.btn_send_chaxun:
+
+                getalldevice(et_lockid.getText().toString(), uuid);
+
+                new Thread() {
+                    public void run() {
+                        try {
+                            Thread.sleep(3000);
+
+                        } catch (InterruptedException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        getlockdevice(et_lockid.getText().toString(), uuid);
+
+                    }
+
+                }.start();
+
+                break;
+
         }
     }
 
@@ -253,6 +278,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         }
     }
+
+
+
+
 
 
     private void gounlock(String lockid, String userid) {
@@ -430,6 +459,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     }
+
+
+
+
+
 
 
     private void getlockdevice(String lockid, String userid) {
