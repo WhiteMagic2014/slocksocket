@@ -23,7 +23,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
 
@@ -34,13 +34,13 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/btn_openconfig"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@drawable/simple_button_style"
                 android:text="设置ip和端口"
-                android:textColor="@color/black"
-                android:id="@+id/btn_openconfig"/>
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -48,24 +48,24 @@
                 android:background="@color/bg" />
 
             <Button
+                android:id="@+id/btn_connect"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@drawable/simple_button_style"
                 android:text="链接"
-                android:textColor="@color/black"
-                android:id="@+id/btn_connect"/>
+                android:textColor="@color/black" />
 
 
             <Button
+                android:id="@+id/btn_cut"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:text="断开"
                 android:textColor="@color/black"
-                android:id="@+id/btn_cut"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -85,7 +85,10 @@
                     android:id="@+id/et_lockid"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:hint="输入车锁ID"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey" />
 
@@ -95,36 +98,64 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_weight="2"
+                android:orientation="vertical">
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/simple_button_style"
-                    android:text="扫码开锁"
-                    android:textColor="@color/black"
-                    android:id="@+id/btn_scan"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/simple_button_style"
-                    android:text="指定id开锁"
-                    android:textColor="@color/black"
-                    android:id="@+id/btn_send"/>
+                    <Button
+                        android:id="@+id/btn_scan"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/simple_button_style"
+                        android:text="扫码开锁"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/btn_send"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/simple_button_style"
+                        android:text="指定id开锁"
+                        android:textColor="@color/black" />
 
 
-                <Button
-                    android:id="@+id/btn_scan_new"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/simple_button_style"
-                    android:text="扫码查询"
-                    android:textColor="@color/black" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/btn_scan_new"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/simple_button_style"
+                        android:text="扫码查询"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/btn_send_chaxun"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/simple_button_style"
+                        android:text="指定id查询"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
 
 
             </LinearLayout>
