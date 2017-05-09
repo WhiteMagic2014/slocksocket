@@ -56,8 +56,8 @@ public class setconfig extends Activity implements View.OnClickListener {
 //        HOST_PORT = share.getInt("port", 8888);
 
 
-        info.setText("现在的ip为：" + share.getString("ip", "0.0.0.0") + "\n" +
-                "现在的端口为：" + share.getInt("port", 8888));
+        info.setText(getString(R.string.nowip) + share.getString("ip", "0.0.0.0") + "\n" +
+                getString(R.string.nowport) + share.getInt("port", 8888));
 
     }
 
@@ -72,8 +72,8 @@ public class setconfig extends Activity implements View.OnClickListener {
                 editor.putInt("port", Integer.parseInt(et_port.getText().toString()));
                 editor.commit();
 
-                info.setText("修改保存成功\n现在的ip为：" + share.getString("ip", "0.0.0.0") + "\n" +
-                        "现在的端口为：" + share.getInt("port", 8888));
+                info.setText(getString(R.string.savechange)+"\n"+ getString(R.string.nowip)  + share.getString("ip", "0.0.0.0") + "\n" +
+                        getString(R.string.nowport) + share.getInt("port", 8888));
 
 
                 break;

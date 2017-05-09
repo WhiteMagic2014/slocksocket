@@ -257,7 +257,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void shownewmarker(LatLng latLng, String id) {
                 aMap.clear();
                 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-                drawMarkerOnMap(latLng, "车锁", "编号:" + id);
+                drawMarkerOnMap(latLng, getString(R.string.lock), getString(R.string.lockid) + id);
             }
         });
 
@@ -274,7 +274,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             stopService(serviceintent);//                    serviceintent = null;
             btn_conn.setVisibility(View.VISIBLE);
             btn_cut.setVisibility(View.GONE);
-            info.setText("手动断开");
+            info.setText(R.string.shoudongduankai);
 
         }
     }
@@ -320,7 +320,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             startService(serviceintent);
             connecting = true;
         } else {
-            Toast.makeText(MainActivity.this, "请确保在有网络环境！", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, R.string.warn1, Toast.LENGTH_LONG).show();
 
         }
     }
@@ -416,7 +416,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             bikeid = resultStrArray[resultStrArray.length - 1];
 
-            Toast.makeText(MainActivity.this, "扫描结果为:" + result + "\n车锁id为:" + bikeid, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getString(R.string.info2) + result + "\n"+getString(R.string.info1)+ bikeid, Toast.LENGTH_SHORT).show();
 
             gounlock(bikeid, uuid);
 
@@ -435,7 +435,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             bikeid = resultStrArray[resultStrArray.length - 1];
 
-            Toast.makeText(MainActivity.this, "扫描结果为:" + result + "\n车锁id为:" + bikeid, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getString(R.string.info2) + result + "\n"+getString(R.string.info1) + bikeid, Toast.LENGTH_SHORT).show();
 
 
             getalldevice(bikeid, uuid);

@@ -14,4 +14,14 @@
     <string name="save">save</string>
     <string name="exit">exit</string>
     <string name="guide">Every time you open the debugging tool automatically read the previous settings, no need to repeatedly set up (of course, does not include the app delete reinstall), do not modify the above settings in the link</string>
+
+    <string name="warn1">Please ensure that the network environment！</string>
+    <string name="info1">Slock ID:</string>
+    <string name="info2">Scan Result:</string>
+    <string name="lock">slock</string>
+    <string name="lockid">ID:</string>
+    <string name="shoudongduankai">Manual disconnect</string>
+    <string name="nowip">Now ip：</string>
+    <string name="nowport">Now port：</string>
+    <string name="savechange">Save success</string>
 </resources>

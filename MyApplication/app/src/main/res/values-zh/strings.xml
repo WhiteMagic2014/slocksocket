@@ -15,4 +15,14 @@
     <string name="save">保存设置</string>
     <string name="exit">离开</string>
     <string name="guide">PS：每次打开调试工具后自动读取上一次的设置，无需多次重复设置（当然不包括app删除重装）,请勿在链接时修改以上设置</string>
+
+    <string name="warn1">请确保在有网络环境！</string>
+    <string name="info1">车锁id为:</string>
+    <string name="info2">扫描结果为:</string>
+    <string name="lock">车锁</string>
+    <string name="lockid">编号:</string>
+    <string name="shoudongduankai">手动断开</string>
+    <string name="nowip">现在的ip为：</string>
+    <string name="nowport">现在的端口为：</string>
+    <string name="savechange">修改保存成功</string>
 </resources>
