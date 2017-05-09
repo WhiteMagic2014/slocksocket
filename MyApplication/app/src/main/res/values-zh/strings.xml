@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">slocksocket</string>
+    <string name="setip">设置ip和端口</string>
+    <string name="connect">链接</string>
+    <string name="scantoopen">扫码开锁</string>
+    <string name="scantoInquiry">扫码查询</string>
+    <string name="sendtoopen">指定id开锁</string>
+    <string name="sendtoInquiry">指定id查询</string>
+    <string name="info">返回显示区</string>
+    <string name="title">SLOCK调试工具</string>
+    <string name="idhint">输入车锁ID</string>
+    <string name="iphint">请输入IP</string>
+    <string name="porthint">请输入端口</string>
+    <string name="save">保存设置</string>
+    <string name="exit">离开</string>
+    <string name="guide">PS：每次打开调试工具后自动读取上一次的设置，无需多次重复设置（当然不包括app删除重装）,请勿在链接时修改以上设置</string>
+</resources>

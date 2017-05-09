@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="SLOCK调试工具"
+            android:text="@string/title"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/et_ip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入IP"
+        android:hint="@string/iphint"
         android:textColor="@color/black"
         android:textColorHint="@color/grey" />
 
@@ -34,7 +34,7 @@
         android:id="@+id/et_port"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入端口"
+        android:hint="@string/porthint"
         android:textColorHint="@color/grey"
         android:textColor="@color/black"/>
 
@@ -56,7 +56,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/simple_button_style"
                 android:textColor="@color/black"
-                android:text="保存设置"/>
+                android:text="@string/save"/>
 
 
             <Button
@@ -66,7 +66,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/simple_button_style"
                 android:textColor="@color/black"
-                android:text="离开"/>
+                android:text="@string/exit"/>
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:text="PS：每次打开调试工具后自动读取上一次的设置，无需多次重复设置（当然不包括app删除重装）,请勿在链接时修改以上设置"/>
+        android:text="@string/guide"/>
 
 
 

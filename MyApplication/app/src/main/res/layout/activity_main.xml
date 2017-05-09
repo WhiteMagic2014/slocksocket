@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="SLOCK调试工具"
+            android:text="@string/title"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -39,7 +39,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@drawable/simple_button_style"
-                android:text="设置ip和端口"
+                android:text="@string/setip"
                 android:textColor="@color/black" />
 
             <TextView
@@ -53,7 +53,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@drawable/simple_button_style"
-                android:text="链接"
+                android:text="@string/connect"
                 android:textColor="@color/black" />
 
 
@@ -87,7 +87,7 @@
                     android:layout_height="match_parent"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
-                    android:hint="输入车锁ID"
+                    android:hint="@string/idhint"
                     android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey" />
@@ -112,7 +112,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/simple_button_style"
-                        android:text="扫码开锁"
+                        android:text="@string/scantoopen"
                         android:textColor="@color/black" />
 
                     <Button
@@ -121,7 +121,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/simple_button_style"
-                        android:text="指定id开锁"
+                        android:text="@string/sendtoopen"
                         android:textColor="@color/black" />
 
 
@@ -143,7 +143,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/simple_button_style"
-                        android:text="扫码查询"
+                        android:text="@string/scantoInquiry"
                         android:textColor="@color/black" />
 
                     <Button
@@ -152,7 +152,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/simple_button_style"
-                        android:text="指定id查询"
+                        android:text="@string/sendtoInquiry"
                         android:textColor="@color/black" />
 
                 </LinearLayout>
@@ -176,7 +176,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="返回显示区"
+            android:text="@string/info"
             android:textColor="@color/black" />
 
         <LinearLayout

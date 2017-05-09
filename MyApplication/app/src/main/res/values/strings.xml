@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">slocksocket</string>
+    <string name="setip">Set IP/Port</string>
+    <string name="connect">Connect</string>
+    <string name="scantoopen">Scan code</string>
+    <string name="scantoInquiry">Scan code query</string>
+    <string name="sendtoopen">Enter ID unlock</string>
+    <string name="sendtoInquiry">Enter ID query</string>
+    <string name="info">Display area</string>
+    <string name="title">Debugging tool</string>
+    <string name="idhint">Enter vehicle lock ID</string>
+    <string name="iphint">Input IP</string>
+    <string name="porthint">Input Port</string>
+    <string name="save">save</string>
+    <string name="exit">exit</string>
+    <string name="guide">Every time you open the debugging tool automatically read the previous settings, no need to repeatedly set up (of course, does not include the app delete reinstall), do not modify the above settings in the link</string>
 </resources>
