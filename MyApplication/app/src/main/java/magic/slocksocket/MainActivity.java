@@ -47,7 +47,7 @@ import magic.slocksocket.receiver.UpdateUIListenner;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private Button btn_openconfig, btn_conn, btn_cut, btn_scan, btn_send, btn_scan_new,btn_send_chaxun;
+    private Button btn_openconfig, btn_conn, btn_cut, btn_scan, btn_send, btn_scan_new, btn_send_chaxun, btn_send_bee;
     private EditText et_lockid;
     private TextView info;
     private Intent serviceintent;
@@ -78,8 +78,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public SlockInfoReceiver slockInfoReceiver;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,8 +93,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_cut = (Button) findViewById(R.id.btn_cut);
         btn_scan = (Button) findViewById(R.id.btn_scan);
         btn_send = (Button) findViewById(R.id.btn_send);
-
-
+        btn_send_bee = (Button) findViewById(R.id.btn_send_bee);
         btn_scan_new = (Button) findViewById(R.id.btn_scan_new);
         btn_send_chaxun = (Button) findViewById(R.id.btn_send_chaxun);
 
@@ -107,6 +104,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_send.setOnClickListener(this);
         btn_scan_new.setOnClickListener(this);
         btn_send_chaxun.setOnClickListener(this);
+        btn_send_bee.setOnClickListener(this);
 
         et_lockid = (EditText) findViewById(R.id.et_lockid);
 
@@ -225,12 +223,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                 break;
 
+
+            case R.id.btn_send_bee:
+                gobee(et_lockid.getText().toString(), uuid);
+                break;
+
         }
     }
-
-
-
-
 
 
     private void connect() {
@@ -280,8 +279,32 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
 
+    private void gobee(String lockid, String userid) {
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("device", "app");
+            jsonObject.put("id", userid);
+            jsonObject.put("ins", "openbee");
+            jsonObject.put("lockid", lockid);
 
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String info = jsonObject.toString();
+        Log.i("chy", info);
+
+
+        if (info.isEmpty())
+            return;
+        // 点击发送消息到服务器
+        BroadcastHelper.sendBroadCast(MainActivity.this,
+                ConstantValues.SENDMESSGE, "data_send", info);
+//        content.setText("");
+
+    }
 
 
     private void gounlock(String lockid, String userid) {
@@ -416,7 +439,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             bikeid = resultStrArray[resultStrArray.length - 1];
 
-            Toast.makeText(MainActivity.this, getString(R.string.info2) + result + "\n"+getString(R.string.info1)+ bikeid, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getString(R.string.info2) + result + "\n" + getString(R.string.info1) + bikeid, Toast.LENGTH_SHORT).show();
 
             gounlock(bikeid, uuid);
 
@@ -435,7 +458,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             bikeid = resultStrArray[resultStrArray.length - 1];
 
-            Toast.makeText(MainActivity.this, getString(R.string.info2) + result + "\n"+getString(R.string.info1) + bikeid, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getString(R.string.info2) + result + "\n" + getString(R.string.info1) + bikeid, Toast.LENGTH_SHORT).show();
 
 
             getalldevice(bikeid, uuid);
@@ -459,11 +482,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     }
-
-
-
-
-
 
 
     private void getlockdevice(String lockid, String userid) {

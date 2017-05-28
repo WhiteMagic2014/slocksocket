@@ -24,4 +24,5 @@
     <string name="nowip">Now ip：</string>
     <string name="nowport">Now port：</string>
     <string name="savechange">Save success</string>
+    <string name="openbee">openbee</string>
 </resources>

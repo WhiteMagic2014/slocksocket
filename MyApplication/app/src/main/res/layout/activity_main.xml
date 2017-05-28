@@ -155,6 +155,15 @@
                         android:text="@string/sendtoInquiry"
                         android:textColor="@color/black" />
 
+                    <Button
+                        android:id="@+id/btn_send_bee"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/simple_button_style"
+                        android:text="@string/openbee"
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
 
 

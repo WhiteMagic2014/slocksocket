@@ -25,4 +25,5 @@
     <string name="nowip">现在的ip为：</string>
     <string name="nowport">现在的端口为：</string>
     <string name="savechange">修改保存成功</string>
+    <string name="openbee">寻铃</string>
 </resources>
